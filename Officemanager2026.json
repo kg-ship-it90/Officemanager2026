@@ -2,8 +2,8 @@
   "appName": "Officemanager2026",
   "appVersion": "2.8.0",
   "schemaVersion": "2.0.0",
-  "packageVersion": "2026.09.09.1788974893",
-  "exportedAt": "2026-09-09T17:28:13.252Z",
+  "packageVersion": "2026.09.09.1788977748",
+  "exportedAt": "2026-09-09T18:15:48.624Z",
   "scriptsCount": 3,
   "scripts": [
     {
@@ -22,7 +22,7 @@
       "version": "1.1.4"
     },
     {
-      "code": "// ==UserScript==\n// @name         HIS - Thay Đổi Tên Bác Sĩ & Tên Khoa Header\n// @version      1.0.0\n// @description  Tự động thay thế tên bác sĩ thành \"❤️🇻🇳 BSCKI.Phan Đình Huy\" và khoa thành \"KHOA HỒI SỨC TÍCH CỰC - CHỐNG ĐỘC\" trên thanh Header HIS Kiên Giang.\n// @match        https://bvdkkiengiang.vnpthis.vn/*\n// @grant        none\n// @run-at       document-idle\n// ==/UserScript==\n\n(function () {\n    'use strict';\n\n    const OLD_DOCTOR = \"Phan Đình Huy\";\n    const NEW_DOCTOR = \"❤️🇻🇳 BSCKI.Phan Đình Huy\";\n\n   // const OLD_DEPT = \"Khoa Hồi sức Chống độc\";\n   // const NEW_DEPT = \"KHOA HỒI SỨC TÍCH CỰC - CHỐNG ĐỘC\";\n\n    function updateHeaderInfo() {\n        const headerContainer = document.querySelector('#table_header .header_right');\n        if (!headerContainer) return;\n\n        // Quét các thẻ <a> chứa tên cần thay thế\n        const links = headerContainer.querySelectorAll('a.mau');\n        links.forEach(a => {\n            const text = a.textContent.trim();\n            if (text === OLD_DOCTOR) {\n                a.textContent = NEW_DOCTOR;\n            } else if (text === OLD_DEPT) {\n                a.textContent = NEW_DEPT;\n            }\n        });\n    }\n\n    // Thực thi ngay lần đầu tải trang\n    updateHeaderInfo();\n\n    // Theo dõi thay đổi DOM phòng trường hợp HIS nạp lại Header qua AJAX\n    const observer = new MutationObserver(() => {\n        updateHeaderInfo();\n    });\n\n    observer.observe(document.body || document.documentElement, {\n        childList: true,\n        subtree: true\n    });\n})();",
+      "code": "// ==UserScript==\n// @name         HIS - Thay thế tên Bác sĩ Header\n// @version      1.0.0\n// @match        https://bvdkkiengiang.vnpthis.vn/*\n// @grant        none\n// @run-at       document-idle\n// ==/UserScript==\n\n(function() {\n  'use strict';\n\n  const TARGET_NAME = \"Phan Đình Huy\";\n  const REPLACEMENT_NAME = \"❤️🇻🇳 BSCKI.Phan Đình Huy\";\n\n  function replaceDoctorName() {\n    // 1. Quét chính xác thẻ <a> chứa tên trong thanh header\n    const links = document.querySelectorAll('#table_header .header_right a.mau');\n    \n    links.forEach(a => {\n      if (a.textContent.trim() === TARGET_NAME) {\n        a.textContent = REPLACEMENT_NAME;\n        // Tùy chọn làm nổi bật chữ (đậm và đổi nhẹ màu chữ nếu cần)\n        a.style.fontWeight = 'bold';\n      }\n    });\n  }\n\n  // Chạy ngay khi nạp trang\n  replaceDoctorName();\n\n  // Theo dõi DOM để giữ nguyên tên mới khi HIS tải lại dữ liệu phiên đăng nhập\n  const observer = new MutationObserver(() => {\n    replaceDoctorName();\n  });\n\n  const headerTable = document.getElementById('table_header') || document.body;\n  observer.observe(headerTable, {\n    childList: true,\n    subtree: true,\n    characterData: true\n  });\n})();",
       "enabled": true,
       "grants": [
         "none"
@@ -31,9 +31,9 @@
       "matches": [
         "https://bvdkkiengiang.vnpthis.vn/*"
       ],
-      "name": "HIS - Thay Đổi Tên Bác Sĩ & Tên Khoa Header",
+      "name": "HIS - Thay thế tên Bác sĩ Header",
       "runAt": "document-idle",
-      "updatedAt": 1788973079006,
+      "updatedAt": 1788976826199,
       "version": "1.0.0"
     },
     {
