@@ -2,8 +2,8 @@
   "appName": "Officemanager2026",
   "appVersion": "2.8.0",
   "schemaVersion": "2.0.0",
-  "packageVersion": "2026.09.09.1788977748",
-  "exportedAt": "2026-09-09T18:15:48.624Z",
+  "packageVersion": "2026.09.09.1788978933",
+  "exportedAt": "2026-09-09T18:35:33.561Z",
   "scriptsCount": 3,
   "scripts": [
     {
@@ -22,7 +22,7 @@
       "version": "1.1.4"
     },
     {
-      "code": "// ==UserScript==\n// @name         HIS - Thay thế tên Bác sĩ Header\n// @version      1.0.0\n// @match        https://bvdkkiengiang.vnpthis.vn/*\n// @grant        none\n// @run-at       document-idle\n// ==/UserScript==\n\n(function() {\n  'use strict';\n\n  const TARGET_NAME = \"Phan Đình Huy\";\n  const REPLACEMENT_NAME = \"❤️🇻🇳 BSCKI.Phan Đình Huy\";\n\n  function replaceDoctorName() {\n    // 1. Quét chính xác thẻ <a> chứa tên trong thanh header\n    const links = document.querySelectorAll('#table_header .header_right a.mau');\n    \n    links.forEach(a => {\n      if (a.textContent.trim() === TARGET_NAME) {\n        a.textContent = REPLACEMENT_NAME;\n        // Tùy chọn làm nổi bật chữ (đậm và đổi nhẹ màu chữ nếu cần)\n        a.style.fontWeight = 'bold';\n      }\n    });\n  }\n\n  // Chạy ngay khi nạp trang\n  replaceDoctorName();\n\n  // Theo dõi DOM để giữ nguyên tên mới khi HIS tải lại dữ liệu phiên đăng nhập\n  const observer = new MutationObserver(() => {\n    replaceDoctorName();\n  });\n\n  const headerTable = document.getElementById('table_header') || document.body;\n  observer.observe(headerTable, {\n    childList: true,\n    subtree: true,\n    characterData: true\n  });\n})();",
+      "code": "// ==UserScript==\n// @name         HIS - Thay thế tên Bác sĩ Header\n// @version      1.0.0\n// @match        https://bvdkkiengiang.vnpthis.vn/*\n// @grant        none\n// @run-at       document-idle\n// ==/UserScript==\n\n(function() {\n  'use strict';\n\n  const TARGET_NAME = \"Phan Đình Huy\";\n  const REPLACEMENT_NAME = \"🇻🇳 BSCKI.Phan Đình Huy\";\n\n  function replaceDoctorName() {\n    // 1. Quét chính xác thẻ <a> chứa tên trong thanh header\n    const links = document.querySelectorAll('#table_header .header_right a.mau');\n    \n    links.forEach(a => {\n      if (a.textContent.trim() === TARGET_NAME) {\n        a.textContent = REPLACEMENT_NAME;\n        // Tùy chọn làm nổi bật chữ (đậm và đổi nhẹ màu chữ nếu cần)\n        a.style.fontWeight = 'bold';\n      }\n    });\n  }\n\n  // Chạy ngay khi nạp trang\n  replaceDoctorName();\n\n  // Theo dõi DOM để giữ nguyên tên mới khi HIS tải lại dữ liệu phiên đăng nhập\n  const observer = new MutationObserver(() => {\n    replaceDoctorName();\n  });\n\n  const headerTable = document.getElementById('table_header') || document.body;\n  observer.observe(headerTable, {\n    childList: true,\n    subtree: true,\n    characterData: true\n  });\n})();",
       "enabled": true,
       "grants": [
         "none"
@@ -33,7 +33,7 @@
       ],
       "name": "HIS - Thay thế tên Bác sĩ Header",
       "runAt": "document-idle",
-      "updatedAt": 1788976826199,
+      "updatedAt": 1788978921831,
       "version": "1.0.0"
     },
     {
