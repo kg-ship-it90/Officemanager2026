@@ -14,7 +14,7 @@
       ],
       "id": "script_1788924577922",
       "matches": [
-        "https://bvdkkiengiang.vnpthis.vn/*"
+      "*://*/*"
       ],
       "name": "Kéo thả & Phím tắt dòng thuốc - HIS Kiên Giang",
       "runAt": "document-idle",
@@ -29,7 +29,7 @@
       ],
       "id": "script_1789011044813",
       "matches": [
-        "https://bvdkkiengiang.vnpthis.vn/*"
+        "*://*/*"
       ],
       "name": "HIS - Thay thế tên Bác sĩ Header (Cờ SVG Bay Động Thuần CSS)",
       "runAt": "document-idle",
